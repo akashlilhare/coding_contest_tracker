@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "660093187311",
+    "project_id": "cctarcker",
+    "storage_bucket": "cctarcker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660093187311:android:13127b7dc0b2e60ccc571a",
+        "android_client_info": {
+          "package_name": "com.akash.coding_contest_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660093187311-bco1kaocrg7uskpmmu196pmk0u2muhdt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJQGWNbYOpKSVgCNlq0dsbnrfjnvGmgtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660093187311-bco1kaocrg7uskpmmu196pmk0u2muhdt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

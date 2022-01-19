@@ -1,9 +1,10 @@
 import 'package:coding_contest_tracker/data_provider/saved_contest_provider.dart';
-import 'package:coding_contest_tracker/pages/home_page.dart';
+import 'package:coding_contest_tracker/pages/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'constants/theme.dart';
 import 'data_provider/contest_provider.dart';
 
 void main() {
@@ -31,10 +32,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Coding Contest Tracker',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: HomePage(),
+
+        theme: AppTheme().darkTheme,
+        home: MainPage(),
       ),
     );
   }

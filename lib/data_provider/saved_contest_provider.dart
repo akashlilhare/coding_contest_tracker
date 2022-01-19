@@ -20,7 +20,7 @@ class SavedContestProvider with ChangeNotifier {
     if(savedData == null){
       contestProviderList = allProvider;
     }else{
-      final List<ContestSource> savedList = decodeContestData(data: savedData!);
+      final List<ContestSource> savedList = decodeContestData(data: savedData);
       contestProviderList = savedList;
     }
     notifyListeners();
@@ -51,7 +51,7 @@ decodeContestData({required String data}) {
     savedList.add(ContestSource(
         title: data["title"],
         key: data["key"],
-        isSelected: data["is_selected"] == "true"? true:false));
+        isSelected: data["is_selected"] == "true"? true:false, imgSrc: ''));
   }
 
   return savedList;
@@ -59,15 +59,14 @@ decodeContestData({required String data}) {
 
 
 List<ContestSource> allProvider = [
-  ContestSource(key: "all", title: 'All',isSelected: false),
-  ContestSource(key: "codeforces", title: 'CodeForces',isSelected: false),
-  ContestSource(title: "CodeForces Gym", key: "codeforces_gym",isSelected: false),
-  ContestSource(title: "TopCoder", key: "top_coder",isSelected: false),
-  ContestSource(title: "AtCoder", key: "at_coder",isSelected: false),
-  ContestSource(title: "CodeChef", key: "code_chef",isSelected: false),
-  ContestSource(title: "CS Academy", key: "cs_academy",isSelected: false),
-  ContestSource(title: "HackerRank", key: "hacker_rank",isSelected: false),
-  ContestSource(title: "HackerEarth", key: "hacker_earth",isSelected: false),
-  ContestSource(title: "Kick Start", key: "kick_start",isSelected: false),
-  ContestSource(title: "LeetCode", key: "leet_code",isSelected: false),
+  ContestSource(key: "codeforces", title: 'CodeForces',isSelected: false,imgSrc: "assets/images/code_forces.png"),
+  ContestSource(title: "CodeForces Gym", key: "codeforces_gym",isSelected: false,imgSrc: "assets/images/code_forces_gym.png"),
+  ContestSource(title: "TopCoder", key: "top_coder",isSelected: false,imgSrc: "assets/images/top_coder.jpg"),
+  ContestSource(title: "AtCoder", key: "at_coder",isSelected: false,imgSrc: "assets/images/at_coders.png"),
+  ContestSource(title: "CodeChef", key: "code_chef",isSelected: false,imgSrc: "assets/images/code_chef.jpg"),
+  ContestSource(title: "CS Academy", key: "cs_academy",isSelected: false,imgSrc: "assets/images/cs_acadmy.png"),
+  ContestSource(title: "HackerRank", key: "hacker_rank",isSelected: false,imgSrc: "assets/images/hacker_rank.png"),
+  ContestSource(title: "HackerEarth", key: "hacker_earth",isSelected: false,imgSrc: "assets/images/hacker_earth.png"),
+  ContestSource(title: "Kick Start", key: "kick_start",isSelected: false,imgSrc: "assets/images/kick_start.jpg"),
+  ContestSource(title: "LeetCode", key: "leet_code",isSelected: false,imgSrc: "assets/images/leet_code.png"),
 ];

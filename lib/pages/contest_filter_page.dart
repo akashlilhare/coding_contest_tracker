@@ -3,7 +3,6 @@ import 'package:coding_contest_tracker/model/contest_source_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'home_page.dart';
 
 class ContestFilterPage extends StatefulWidget {
   const ContestFilterPage({Key? key}) : super(key: key);
@@ -129,8 +128,7 @@ class _ContestFilterPageState extends State<ContestFilterPage> {
                       print("here");
                       appliedList.forEach((element) {print(element.title+" "+ element.isSelected.toString());});
                       Navigator.of(context).pop();
-                 Route route = MaterialPageRoute(builder: (context) =>HomePage());
-                 Navigator.pushReplacement(context, route);
+
                     },
                   ),
                 ],
