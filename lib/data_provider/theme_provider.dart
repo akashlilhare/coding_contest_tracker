@@ -1,0 +1,39 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class ThemeProvider with ChangeNotifier {
+  int switchIndex = 0;
+  final String _key = "theme";
+  AdaptiveThemeMode selectedTheme = AdaptiveThemeMode.system;
+
+  setTheme({required int index, required BuildContext context}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt(_key, index);
+    if (index == 0) {
+      AdaptiveTheme.of(context).setLight();
+    } else if (index == 1) {
+      AdaptiveTheme.of(context).setDark();
+    } else {
+      AdaptiveTheme.of(context).setSystem();
+    }
+    switchIndex = index;
+    notifyListeners();
+  }
+
+  Future<AdaptiveThemeMode> getTheme() async {
+    print("akash ");
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int index = prefs.getInt(_key) ?? 0;
+    switchIndex = index;
+    print("index " + index.toString());
+
+    if (switchIndex == 0) {
+      return AdaptiveThemeMode.light;
+    } else if (switchIndex == 1) {
+      return AdaptiveThemeMode.dark;
+    } else {
+      return AdaptiveThemeMode.system;
+    }
+  }
+}

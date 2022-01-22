@@ -5,7 +5,7 @@ class Contest {
   String url;
   String startTime;
   String endTime;
-  String duration;
+  String? duration;
   String site;
   String in24Hours;
   String status;

@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 class ContestProvider with ChangeNotifier {
-  ConnectionStatus connectionStatus = ConnectionStatus.success;
+  DataConnectionStatus connectionStatus = DataConnectionStatus.loading;
   List<Contest> platformContestList = [];
   List<Contest> runningContest = [];
   List<Contest> upcoming24Contest = [];
@@ -14,20 +14,20 @@ class ContestProvider with ChangeNotifier {
   readPlatformContest({required String tag}) async {
     platformContestList = [];
     String url = "https://kontests.net/api/v1/$tag";
-    connectionStatus = ConnectionStatus.loading;
+    connectionStatus = DataConnectionStatus.loading;
     notifyListeners();
     try {
       final response = await http.get(Uri.parse(url));
       print(response.statusCode);
       if (response.statusCode == 200) {
-        connectionStatus = ConnectionStatus.success;
+        connectionStatus = DataConnectionStatus.success;
         var jsonData = json.decode(response.body);
         platformContestList = fromJson(jsonData);
       } else {
-        connectionStatus = ConnectionStatus.error;
+        connectionStatus = DataConnectionStatus.error;
       }
     } on Error {
-      connectionStatus = ConnectionStatus.error;
+      connectionStatus = DataConnectionStatus.error;
     } finally {
       notifyListeners();
     }
@@ -40,23 +40,24 @@ class ContestProvider with ChangeNotifier {
       final response = await http.get(Uri.parse(url));
       print(response.statusCode);
       if (response.statusCode == 200) {
-        connectionStatus = ConnectionStatus.success;
+        connectionStatus = DataConnectionStatus.success;
         var jsonData = json.decode(response.body);
         allContest = fromJson(jsonData);
       } else {
-        connectionStatus = ConnectionStatus.error;
+        connectionStatus = DataConnectionStatus.error;
       }
     } on Error {
-      connectionStatus = ConnectionStatus.error;
-    } finally {
-      notifyListeners();
-    }
+      connectionStatus = DataConnectionStatus.error;
+    } finally {}
   }
 
-  setData() async{
-    connectionStatus = ConnectionStatus.loading;
+  setData() async {
+    runningContest = [];
+    upcoming24Contest = [];
+    allContest = [];
+    connectionStatus = DataConnectionStatus.loading;
     notifyListeners();
- await   readAllContest();
+    await readAllContest();
     print("here  ");
     print(allContest.length);
     for (var contest in allContest) {
@@ -64,10 +65,11 @@ class ContestProvider with ChangeNotifier {
         runningContest.add(contest);
       } else {
         if (contest.in24Hours == "Yes") {
-          runningContest.add(contest);
+          upcoming24Contest.add(contest);
         }
       }
     }
+    notifyListeners();
   }
 
   List<Contest> fromJson(List<dynamic> jsonList) {
@@ -88,5 +90,5 @@ class ContestProvider with ChangeNotifier {
   }
 }
 
-enum ConnectionStatus { success, error, loading }
+enum DataConnectionStatus { success, error, loading }
 

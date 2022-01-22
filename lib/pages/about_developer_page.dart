@@ -5,7 +5,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutDeveloperPage extends StatelessWidget {
-  const AboutDeveloperPage({Key? key}) : super(key: key);
+  static const routeName = "about-developer-page";
+  final Function onBack;
+  const AboutDeveloperPage({Key? key,required this.onBack}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -100,78 +102,85 @@ My vision is to make the world a better place. Now almost everything is becoming
     buildDivider() {
       return Container(
         height: 20,
-        color: Colors.green.withOpacity(.05),
+        color: Colors.green.withOpacity(.1),
       );
     }
 
     buildThinDivider() {
       return Container(
         height: 2,
-        color: Colors.green.withOpacity(.05),
+        color: Colors.green.withOpacity(.1),
       );
     }
 
-    return Scaffold(
-      drawer: DrawerPage(),
-      appBar: AppBar(
-        title: Text("About Developer"),
-      ),
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 18,
-            ),
-            Markdown(
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              data: about,
-              styleSheet: MarkdownStyleSheet(
-                  p: TextStyle(
-                      color: Colors.white.withOpacity(.9),
-                      letterSpacing: 1.5,
-                      height: 1.5),
-                  h2: TextStyle(
-                    color: Colors.white,
-                  )),
-            ),
-            SizedBox(
-              height: 18,
-            ),
-            buildDivider(),
-            ListTile(
-              onTap: (){
-                launchURL("https://play.google.com/store/apps/developer?id=Akash+Lilhare");
-              },
-              title: Text("View My Other Apps",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(color: Colors.blue)),
-            ),
-            buildThinDivider(),
-            ListTile(
-              onTap: (){
-                launchURL("https://drive.google.com/file/d/1dbaAqRGBACoHu6RYThPusmSbKdG9CkxL/view");
-              },
-              title: Text("Download Resume",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(color: Colors.blue)),
-            ),
-            buildDivider(),
-            SizedBox(
-              height: 18,
-            ),
-            buildSocial(),
-            SizedBox(
-              height: 24,
-            ),
-          ],
+    return WillPopScope(
+      onWillPop: ()=>onBack(context),
+      child: Scaffold(
+        drawer: DrawerPage(),
+        appBar: AppBar(
+          title: Text("About Developer",),
+        ),
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 18,
+              ),
+              Markdown(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                data: about,
+                styleSheet: MarkdownStyleSheet(
+                    p: TextStyle(
+                        color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.9),
+                        letterSpacing: 1.5,
+                        height: 1.5),
+                    h2: TextStyle(
+                      color: Theme.of(context).textTheme.headline1!.color
+                    )),
+              ),
+              SizedBox(
+                height: 18,
+              ),
+              buildDivider(),
+
+              ListTile(
+                onTap: (){
+                  launchURL("https://play.google.com/store/apps/developer?id=Akash+Lilhare");
+                },
+                title: Text("View My Other Apps",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1!
+                        .copyWith(color: Colors.green,fontWeight: FontWeight.w600)),
+              ),
+              buildThinDivider(),
+              ListTile(
+                onTap: (){
+                  launchURL("http://akash-lilhare.netlify.app");
+                },
+                title: Text("View my Website",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1!
+                        .copyWith(color: Colors.green,fontWeight: FontWeight.w600)),
+              ),
+
+              buildThinDivider(),
+
+              buildDivider(),
+              SizedBox(
+                height: 18,
+              ),
+              buildSocial(),
+              SizedBox(
+                height: 24,
+              ),
+            ],
+          ),
         ),
       ),
     );

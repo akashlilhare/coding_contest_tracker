@@ -1,11 +1,15 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:coding_contest_tracker/data_provider/saved_contest_provider.dart';
-import 'package:coding_contest_tracker/pages/main_page.dart';
+import 'package:coding_contest_tracker/pages/about_developer_page.dart';
+import 'package:coding_contest_tracker/pages/home_page/home_page.dart';
+import 'package:coding_contest_tracker/pages/privacy_policy_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'constants/theme.dart';
 import 'data_provider/contest_provider.dart';
+import 'data_provider/theme_provider.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -18,24 +22,85 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
+        providers: [
+          ChangeNotifierProvider(create: (context) => ContestProvider()),
+          ChangeNotifierProvider(create: (context) => ThemeProvider()),
+          ChangeNotifierProvider(create: (context) => SavedContestProvider()),
+        ],
+        builder: (context, _) {
+          return FutureBuilder<AdaptiveThemeMode>(
+              future:
+                  Provider.of<ThemeProvider>(context, listen: false).getTheme(),
+              initialData: AdaptiveThemeMode.system,
+              builder: (context, snapShot) {
+                return AdaptiveTheme(
+                  light: AppTheme().lightTheme,
+                  dark: AppTheme().darkTheme,
+                  initial: snapShot.hasData
+                      ? snapShot.data ?? AdaptiveThemeMode.system
+                      : AdaptiveThemeMode.system,
+                  builder: (lightTheme, darkTheme) {
+                    return MaterialApp(
+                      debugShowCheckedModeBanner: false,
+                      title: 'Coding Contest Tracker',
+                      theme: lightTheme,
+                      darkTheme: darkTheme,
+                      home: HomePage(
+                        onBack: onBackPressed,
+                      ),
+                      routes: {
+                        AboutDeveloperPage.routeName: (ctx) =>
+                            const AboutDeveloperPage(onBack: onBackPressed),
+                        HomePage.routeName: (ctx) =>
+                            const HomePage(onBack: onBackPressed),
+                        PrivacyPolicyPage.routeName: (ctx) =>
+                            const PrivacyPolicyPage(onBack: onBackPressed),
+                      },
+                    );
+                  },
+                );
+              });
+        });
+  }
+}
 
-        ChangeNotifierProvider(create: (context) => ContestProvider()),
-        ChangeNotifierProvider(create: (context) => SavedContestProvider()),
+Future<bool> onBackPressed(BuildContext context) async {
+  bool value = await showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(18))
+              ),
+              title: Text("Do you really want to exit the app?"),
+              actions: [
+                ElevatedButton(
 
-      ],
+                  child: Text("Yes"),
+                  style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                      primary: Theme.of(context).primaryColor.withOpacity(.5)),
 
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Coding Contest Tracker',
+                  onPressed: () => Navigator.pop(context, true),
+                ),
 
-        theme: AppTheme().darkTheme,
-        home: MainPage(),
-      ),
-    );
+                ElevatedButton(
+                  child: Text("No"),
+                  style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
+                  onPressed: () => Navigator.pop(context, false),
+                ),
+              ],
+            );
+          }) ??
+      false;
+
+  if (value) {
+    SystemNavigator.pop();
+    return true;
+  } else {
+    return false;
   }
 }
