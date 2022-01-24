@@ -6,7 +6,7 @@ Tracker for all ongoing and upcoming coding contests hosted on various platforms
 
 ##  Download app
 
-[![Download app from play store](https://www.gstatic.com/android/market_images/web/play_prism_hlock_1x.png)](https://play.google.com/store/apps/details?id=com.akash.coding_contest_tracker)
+[![Download app from play store](https://w7.pngwing.com/pngs/961/859/png-transparent-google-play-android-app-store-apple-android-text-rectangle-logo.png)](https://play.google.com/store/apps/details?id=com.akash.coding_contest_tracker)
 
 ## Description
 
