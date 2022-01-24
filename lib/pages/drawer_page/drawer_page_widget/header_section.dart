@@ -6,13 +6,13 @@ class HeaderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       height: 90,
       width: double.infinity,
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text("CC Tracker".toUpperCase(),
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.w600)),

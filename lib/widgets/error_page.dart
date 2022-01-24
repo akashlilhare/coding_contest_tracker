@@ -32,7 +32,7 @@ class ErrorPage extends StatelessWidget {
 
 
               onPressed: () {onRetry();},
-              child: Text("Retry".toUpperCase(),style: TextStyle(color: Colors.black),),
+              child: Text("Retry".toUpperCase(),style: const TextStyle(color: Colors.black),),
             ),
           )
         ],

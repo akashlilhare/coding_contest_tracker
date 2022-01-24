@@ -6,7 +6,7 @@ class AppTheme {
   static const darkSecondaryBackgroundColor = Color(0xff262837);
 
   static Color lightBackgroundColor = Colors.blue.shade50;
-  static Color lightSecondaryBackgroundColor = Colors.blue.shade50;
+  static Color lightSecondaryBackgroundColor = Colors.white;
   var darkTheme = ThemeData(
       backgroundColor: darkSecondaryBackgroundColor,
       primaryColor: Colors.green,
@@ -14,12 +14,18 @@ class AppTheme {
       canvasColor: darkSecondaryBackgroundColor,
      textTheme:darkTextTheme,
       cardColor: darkBackgroundColor,
+      dialogTheme:const DialogTheme(
+        backgroundColor: darkBackgroundColor
+      ) ,
 
+
+      shadowColor: Colors.white38,
       appBarTheme: const AppBarTheme(
         backgroundColor: darkSecondaryBackgroundColor,
         elevation: 1,
         shadowColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.white, opacity: .9),
+
         titleTextStyle: TextStyle(
             color: Colors.white,
             fontSize: 18,
@@ -34,12 +40,17 @@ class AppTheme {
       canvasColor: lightSecondaryBackgroundColor,
       textTheme:lightTextTheme,
       cardColor: lightSecondaryBackgroundColor,
+
+      shadowColor: Colors.black,
+      dialogTheme:DialogTheme(
+          backgroundColor: lightSecondaryBackgroundColor
+      ) ,
       appBarTheme:  AppBarTheme(
-        backgroundColor: lightBackgroundColor,
+        backgroundColor: lightSecondaryBackgroundColor,
         elevation: 1,
         shadowColor: Colors.black,
-        iconTheme: IconThemeData(color: Colors.black, opacity: .9),
-        titleTextStyle: TextStyle(
+        iconTheme: const IconThemeData(color: Colors.black, opacity: .9),
+        titleTextStyle: const TextStyle(
             color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.w700,
@@ -65,7 +76,7 @@ var lightTextTheme =   TextTheme(
   bodyText1: GoogleFonts.jetBrainsMono(
       fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.5,color: Colors.black),
   bodyText2: GoogleFonts.jetBrainsMono(
-      fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.25,color: Colors.black),
+      fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.25,color: Colors.black87),
   button: GoogleFonts.jetBrainsMono(
       fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 1.25),
   caption: GoogleFonts.jetBrainsMono(
@@ -87,12 +98,12 @@ var darkTextTheme = TextTheme(
       letterSpacing: 1.5,
       color: Colors.white70),
   headline3: GoogleFonts.jetBrainsMono(
-      fontSize: 48, fontWeight: FontWeight.w400, color: Colors.black),
+      fontSize: 48, fontWeight: FontWeight.w400, color: Colors.white),
   headline4: GoogleFonts.jetBrainsMono(
       fontSize: 34,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.25,
-      color: Colors.black87),
+      color: Colors.white70),
   headline5:
       GoogleFonts.jetBrainsMono(fontSize: 24, fontWeight: FontWeight.w400),
   headline6: GoogleFonts.jetBrainsMono(

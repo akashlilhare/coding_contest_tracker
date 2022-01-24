@@ -5,32 +5,38 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Constants {
   String getParsedTime({required String date}) {
-    String currTime;
+    String? currTime;
     try {
-      currTime = DateTime.tryParse(date) == null
-          ? DateTime(2000, 08, 12).toString()
-          : DateTime.tryParse(date).toString();
+      currTime =  DateTime.tryParse(date) == null ?null:DateTime.tryParse(date).toString();
     } on Error {
       currTime = date.toString();
     }
-    var format = DateFormat.yMMMEd();
-    String dateString = format.format(DateTime.parse(currTime));
-    return dateString;
+    if(currTime == null){
+      return date.toString();
+    }
+    var timeFormat = DateFormat.jm();
+    var dateFormat = DateFormat.yMMMd();
+    String timeString = timeFormat.format(DateTime.parse(currTime).toLocal());
+    String dateString = dateFormat.format(DateTime.parse(currTime).toLocal());
+    return "$dateString, $timeString";
   }
 
   List<List<Color>> gradientList = [
-    [Colors.pink, Colors.pink.shade600],
+
     [Colors.red.shade400, Colors.red.shade500],
     [Color(0xff614385), Color(0xff516395)],
+    [Colors.pink, Colors.pink.shade600],
     [Colors.green, Colors.green.shade600],
     [Colors.purple.shade400, Colors.purple.shade600],
   ];
 
   List<Color> getGradients({required int cid}) {
+    List<Color> temp =  gradientList[cid % 5];
+
     if (cid % 5 == 0) {
       gradientList.shuffle();
     }
-    return gradientList[cid % 5];
+    return temp;
   }
 
   buildThinDivider() {
@@ -42,7 +48,7 @@ class Constants {
 
   buildFatDivider() {
     return Container(
-      height: 10,
+      height: 16,
       color: Colors.green.withOpacity(.1),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:coding_contest_tracker/data_provider/saved_contest_provider.dart';
 import 'package:coding_contest_tracker/pages/about_developer_page.dart';
+import 'package:coding_contest_tracker/pages/home_page/favorite_sites/favorite_sites_page.dart';
 import 'package:coding_contest_tracker/pages/home_page/home_page.dart';
 import 'package:coding_contest_tracker/pages/privacy_policy_page.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
                       title: 'Coding Contest Tracker',
                       theme: lightTheme,
                       darkTheme: darkTheme,
-                      home: HomePage(
+                      home: const HomePage(
                         onBack: onBackPressed,
                       ),
                       routes: {
@@ -58,6 +59,7 @@ class MyApp extends StatelessWidget {
                             const HomePage(onBack: onBackPressed),
                         PrivacyPolicyPage.routeName: (ctx) =>
                             const PrivacyPolicyPage(onBack: onBackPressed),
+                        FavoriteSitesPage.routName: (ctx)=> const FavoriteSitesPage(onBack : onBackPressed)
                       },
                     );
                   },
@@ -72,14 +74,15 @@ Future<bool> onBackPressed(BuildContext context) async {
           context: context,
           builder: (context) {
             return AlertDialog(
-              shape: RoundedRectangleBorder(
+              elevation: 2,
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(18))
               ),
-              title: Text("Do you really want to exit the app?"),
+              title: Text("Do you really want to exit the app?",style: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color),),
               actions: [
                 ElevatedButton(
 
-                  child: Text("Yes"),
+                  child: const Text("Yes"),
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
                       primary: Theme.of(context).primaryColor.withOpacity(.5)),
@@ -88,7 +91,7 @@ Future<bool> onBackPressed(BuildContext context) async {
                 ),
 
                 ElevatedButton(
-                  child: Text("No"),
+                  child: const Text("No"),
                   style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
                   onPressed: () => Navigator.pop(context, false),
                 ),

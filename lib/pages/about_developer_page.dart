@@ -31,7 +31,7 @@ My vision is to make the world a better place. Now almost everything is becoming
       SocialProfile(
           icon: FontAwesomeIcons.linkedin,
           title: "LinkedIn",
-          color: Color(0xff0e76a8),
+          color: const Color(0xff0e76a8),
           onTap: () =>
               launchURL("https://www.linkedin.com/in/akash-lilhare-739a80192")),
       SocialProfile(
@@ -42,7 +42,7 @@ My vision is to make the world a better place. Now almost everything is becoming
       SocialProfile(
           icon: FontAwesomeIcons.googlePlay,
           title: "Play Store",
-          color: Color(0xff689F38),
+          color: const Color(0xff689F38),
           onTap: () => launchURL(
               "https://play.google.com/store/apps/details?id=com.akash.lilhare")),
       SocialProfile(
@@ -54,12 +54,12 @@ My vision is to make the world a better place. Now almost everything is becoming
       SocialProfile(
           icon: FontAwesomeIcons.twitter,
           title: "Twitter",
-          color: Color(0xff24A4F2),
+          color: const Color(0xff24A4F2),
           onTap: () => launchURL("https://twitter.com/akash__lilhare")),
       SocialProfile(
           icon: FontAwesomeIcons.stackOverflow,
           title: "Stack Overflow",
-          color: Color(0xffF1680B),
+          color: const Color(0xffF1680B),
           onTap: () => launchURL(
               "https://stackoverflow.com/users/14102180/akash-lilhare"))
     ];
@@ -77,13 +77,13 @@ My vision is to make the world a better place. Now almost everything is becoming
                   .bodyText1!
                   .copyWith(fontSize: 18, fontWeight: FontWeight.w500),
             ),
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             Wrap(
               children: socialProfile
                   .map((profile) => Padding(
-                        padding: EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.only(left: 8),
                         child: ElevatedButton.icon(
                           style:
                               ElevatedButton.styleFrom(primary: profile.color,elevation: 0),
@@ -116,22 +116,22 @@ My vision is to make the world a better place. Now almost everything is becoming
     return WillPopScope(
       onWillPop: ()=>onBack(context),
       child: Scaffold(
-        drawer: DrawerPage(),
+        drawer: const DrawerPage(),
         appBar: AppBar(
-          title: Text("About Developer",),
+          title: const Text("About Developer",),
         ),
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 18,
               ),
               Markdown(
-                padding: EdgeInsets.symmetric(horizontal: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 data: about,
                 styleSheet: MarkdownStyleSheet(
                     p: TextStyle(
@@ -142,7 +142,7 @@ My vision is to make the world a better place. Now almost everything is becoming
                       color: Theme.of(context).textTheme.headline1!.color
                     )),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 18,
               ),
               buildDivider(),
@@ -172,11 +172,11 @@ My vision is to make the world a better place. Now almost everything is becoming
               buildThinDivider(),
 
               buildDivider(),
-              SizedBox(
+              const SizedBox(
                 height: 18,
               ),
               buildSocial(),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
             ],

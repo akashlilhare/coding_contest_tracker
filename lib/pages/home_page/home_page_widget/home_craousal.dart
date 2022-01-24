@@ -27,53 +27,53 @@ class _HomeCarouselState extends State<HomeCarousel> {
       );
       return Container(
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
           children: [
-            Spacer(),
+            const Spacer(),
             Text(
               contest.name,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.w600),
             ),
-            Spacer(),
+            const Spacer(),
             Text(
               "Start Time : " +
                   constants.getParsedTime(date: contest.startTime),
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.w500),
             ),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             Text(
               "End Time : " + constants.getParsedTime(date: contest.endTime),
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.w500),
             ),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             if (duration != null)
               Text(
                 "Duration: " + duration,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontSize: 15,
                     fontWeight: FontWeight.w500),
               ),
-            Spacer(),
+            const Spacer(),
             ElevatedButton(
-              child: Text(
+              child:const  Text(
                 "View Contest",
 
                 style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w600),
@@ -81,15 +81,15 @@ class _HomeCarouselState extends State<HomeCarousel> {
               style: ElevatedButton.styleFrom(
                   primary: Colors.white,
                   elevation: 0,
-                  minimumSize: Size(40, 40),
-                  shape: RoundedRectangleBorder(
+                  minimumSize: const Size(40, 40),
+                  shape:const  RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(30)))),
               onPressed: () {
                 constants.launchURL(url: contest.url);
               },
             ),
-            Spacer(),
-            SizedBox(
+            const  Spacer(),
+            const SizedBox(
               height: 12,
             )
           ],
@@ -99,13 +99,13 @@ class _HomeCarouselState extends State<HomeCarousel> {
 
     buildSlider(ContestProvider data) {
       return ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
             Container(
-              padding: EdgeInsets.symmetric(vertical: 8),
-              decoration: BoxDecoration(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              decoration:const  BoxDecoration(
                   gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -131,7 +131,7 @@ class _HomeCarouselState extends State<HomeCarousel> {
               bottom: 12,
               child: AnimatedSmoothIndicator(
                 count: data.runningContest.length,
-                effect: WormEffect(
+                effect: const WormEffect(
                   dotHeight: 7,
                   paintStyle: PaintingStyle.stroke,
                   dotWidth: 7,
@@ -155,10 +155,10 @@ class _HomeCarouselState extends State<HomeCarousel> {
           "Running Contest",
           style: TextStyle(
               color: Theme.of(context).textTheme.headline1!.color,
-              fontSize: 20,
-              fontWeight: FontWeight.w500),
+              fontSize: 17,
+              fontWeight: FontWeight.w600),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         buildSlider(widget.data),

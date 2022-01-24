@@ -18,7 +18,6 @@ class ContestProvider with ChangeNotifier {
     notifyListeners();
     try {
       final response = await http.get(Uri.parse(url));
-      print(response.statusCode);
       if (response.statusCode == 200) {
         connectionStatus = DataConnectionStatus.success;
         var jsonData = json.decode(response.body);
@@ -38,7 +37,6 @@ class ContestProvider with ChangeNotifier {
     String url = "https://kontests.net/api/v1/all";
     try {
       final response = await http.get(Uri.parse(url));
-      print(response.statusCode);
       if (response.statusCode == 200) {
         connectionStatus = DataConnectionStatus.success;
         var jsonData = json.decode(response.body);
@@ -58,8 +56,7 @@ class ContestProvider with ChangeNotifier {
     connectionStatus = DataConnectionStatus.loading;
     notifyListeners();
     await readAllContest();
-    print("here  ");
-    print(allContest.length);
+
     for (var contest in allContest) {
       if (contest.status == "CODING") {
         runningContest.add(contest);
@@ -78,8 +75,8 @@ class ContestProvider with ChangeNotifier {
       tempList.add(Contest(
         name: json['name'],
         url: json['url'],
-        startTime: json['start_time'],
-        endTime: json['end_time'],
+        startTime: json['start_time'].replaceAll(" UTC", ".000Z").replaceAll(" ", "T"),
+        endTime: json['end_time'].replaceAll(" UTC", ".000Z").replaceAll(" ", "T"),
         duration: json['duration'],
         site: json['site'] ?? ".",
         in24Hours: json['in_24_hours'],

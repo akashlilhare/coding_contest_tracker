@@ -76,7 +76,7 @@ class _PlatformContestDetailPageState extends State<PlatformContestDetailPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(widget.title),
-                  SizedBox(height: 1,),
+                  const SizedBox(height: 1,),
                   Text(data.platformContestList.length.toString() +" Contest",style: TextStyle(
                     color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.6),
                     fontSize: 14
@@ -85,7 +85,7 @@ class _PlatformContestDetailPageState extends State<PlatformContestDetailPage> {
               ),
             ),
             body:data.connectionStatus == DataConnectionStatus.loading
-                ? MainPageLoader()
+                ? const MainPageLoader()
                 : data.connectionStatus == DataConnectionStatus.error
                 ? ErrorPage(
               onRetry: () {
@@ -94,18 +94,24 @@ class _PlatformContestDetailPageState extends State<PlatformContestDetailPage> {
               },
             )
                 : data.platformContestList.isEmpty?Center(child: Text("No Contest Found For\n${widget.title} ",textAlign: TextAlign.center,),):  SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              padding: EdgeInsets.only(top: 4,bottom: 16),
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.only(top: 4,bottom: 16),
               child: Column(
                 children: [
                   ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
+                    reverse: true,
                     itemCount: data.platformContestList.length,
                       itemBuilder: (context,index){
 
-                    return  ContestDetailCard(contest: data.platformContestList[index] ,colorList:Constants().getGradients(cid: index),);
-                  })
+                    return ContestDetailCard(
+                                    contest: data.platformContestList[index],
+                                    colorList:
+                                        Constants().getGradients(cid: index),
+                                    siteName: widget.title,
+                                  );
+                                })
                 ],
               )
             ),

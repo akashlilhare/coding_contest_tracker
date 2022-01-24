@@ -1,5 +1,4 @@
 import 'package:coding_contest_tracker/constants/constatns.dart';
-import 'package:coding_contest_tracker/main.dart';
 import 'package:coding_contest_tracker/model/contest_source_model.dart';
 import 'package:flutter/material.dart';
 
@@ -16,28 +15,24 @@ class HomePageBody extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (builder) => PlatformContestDetailPage(
-                title: allProvider[index].title,
-                src: allProvider[index].key,
+                title: allContestList[index].title,
+                src: allContestList[index].key,
 
               )));
         },
         child: Container(
 
           height: 100,
-          margin: EdgeInsets.only(bottom: 12),
+          margin: const EdgeInsets.only(bottom: 12),
 
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Expanded(
-              //   child: Opacity(
-              //   opacity: .2,
-              //   child: Image.asset(allProvider[index].imgSrc,height: 100,width: double.infinity,fit: BoxFit.cover,),),
-              // ),
+
               Text(
-                allProvider[index].title,
-                style: TextStyle(
+                allContestList[index].title,
+                style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.w600),
@@ -45,7 +40,7 @@ class HomePageBody extends StatelessWidget {
             ],
           ),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(12)),
+              borderRadius:const  BorderRadius.all(Radius.circular(12)),
               gradient: LinearGradient(
                   begin: index % 2 == 0? Alignment.bottomLeft: Alignment.topRight,
                   end:index % 2 == 0? Alignment.bottomRight: Alignment.topRight,
@@ -61,14 +56,14 @@ class HomePageBody extends StatelessWidget {
           "All Contest",
           style: TextStyle(
               color: Theme.of(context).textTheme.headline1!.color,
-              fontSize: 20,
-              fontWeight: FontWeight.w500),
+              fontSize: 17,
+              fontWeight: FontWeight.w600),
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
         ListView.builder(
-            itemCount: allProvider.length,
+            itemCount: allContestList.length,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {

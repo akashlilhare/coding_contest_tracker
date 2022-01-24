@@ -76,7 +76,7 @@ class MainPageLoader extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Coding Contest Tracker"),
+        title: const Text("Coding Contest Tracker"),
       ),
       body: Shimmer.fromColors(
         baseColor: isDark ? darkColor : Colors.grey.shade200,

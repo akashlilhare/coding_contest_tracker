@@ -77,19 +77,19 @@ If you have any questions or suggestions about my Privacy Policy, do not hesitat
     return WillPopScope(
       onWillPop: ()=>onBack(context),
       child: Scaffold(
-        drawer: DrawerPage(),
+        drawer: const DrawerPage(),
         appBar: AppBar(
           title: const Text("Privacy Policy"),
         ),
         body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 18),
-          physics: BouncingScrollPhysics(),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              SizedBox(height: 8,),
+              const SizedBox(height: 8,),
               Markdown(
                 styleSheet: MarkdownStyleSheet(
-                    h3Padding: EdgeInsets.only(top: 24),
+                    h3Padding: const EdgeInsets.only(top: 24),
                     h3: Theme.of(context).textTheme.bodyText1),
                 padding: EdgeInsets.zero,
                 onTapLink: (_, url, __) async {
@@ -101,10 +101,10 @@ If you have any questions or suggestions about my Privacy Policy, do not hesitat
                 },
                 softLineBreak: true,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 data: policy,
               ),
-              SizedBox(height: 18,)
+              const SizedBox(height: 18,)
             ],
           ),
         ),

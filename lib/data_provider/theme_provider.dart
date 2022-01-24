@@ -22,11 +22,10 @@ class ThemeProvider with ChangeNotifier {
   }
 
   Future<AdaptiveThemeMode> getTheme() async {
-    print("akash ");
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int index = prefs.getInt(_key) ?? 0;
+    int index = prefs.getInt(_key) ?? 2;
     switchIndex = index;
-    print("index " + index.toString());
 
     if (switchIndex == 0) {
       return AdaptiveThemeMode.light;

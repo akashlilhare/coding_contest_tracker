@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.coding_contest_tracker">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
     package="com.example.coding_contest_tracker">
    <application
         android:label="Coding Contest Tracker"
@@ -68,6 +70,10 @@
                 android:name="android.intent.action.SEND"
                 android:exported="true" />
             <data android:mimeType="*/*" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.INSERT" android:exported="true"  />
+            <data android:mimeType="vnd.android.cursor.item/event" />
         </intent>
     </queries>
 </manifest>

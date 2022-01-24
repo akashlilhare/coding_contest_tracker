@@ -27,7 +27,7 @@ class _ContestDetailPageState extends State<ContestDetailPage> {
     setState(() {
       isLoading = true;
     });
-    Future.delayed(Duration(milliseconds: 1000)).then((value) => setState(() {
+    Future.delayed(const Duration(milliseconds: 1000)).then((value) => setState(() {
           isLoading = false;
         }));
 
@@ -42,7 +42,7 @@ class _ContestDetailPageState extends State<ContestDetailPage> {
     return WillPopScope(
       onWillPop:()=> widget.onBack(context),
       child: Scaffold(
-          drawer: DrawerPage(),
+          drawer: const DrawerPage(),
           appBar: AppBar(
             title:isLoading ? Shimmer.fromColors(
               baseColor: isDark ? Colors.green.withOpacity(.1) : Colors.grey.shade200,
@@ -79,7 +79,7 @@ class _ContestDetailPageState extends State<ContestDetailPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(widget.title),
-                SizedBox(height: 1,),
+                const SizedBox(height: 1,),
                 Text(widget.contestList.length.toString() +" Contest",style: TextStyle(
                     color: Theme.of(context).textTheme.headline1!.color!.withOpacity(.6),
                     fontSize: 14
@@ -92,11 +92,17 @@ class _ContestDetailPageState extends State<ContestDetailPage> {
                   child: CircularProgressIndicator(color: Theme.of(context).primaryColor,),
                 )
               : ListView.builder(
+
                   itemCount: widget.contestList.length,
                   shrinkWrap: true,
-                  physics: BouncingScrollPhysics(),
+                  padding: const EdgeInsets.only(bottom: 16),
+                  physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return ContestDetailCard(contest: widget.contestList[index],colorList: Constants().getGradients(cid: index),);
+                    return ContestDetailCard(
+                      contest: widget.contestList[index],
+                      colorList: Constants().getGradients(cid: index),
+                      siteName: widget.contestList[index].site,
+                    );
                   })),
     );
   }

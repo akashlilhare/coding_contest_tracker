@@ -11,7 +11,7 @@ class DrawerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
+      child:  SizedBox(
         width: MediaQuery.of(context).size.width / 1.3,
         child: Stack(
           alignment: AlignmentDirectional.bottomCenter,
@@ -19,10 +19,11 @@ class DrawerPage extends StatelessWidget {
             Drawer(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [HeaderSection(), DrawerItemSection()],
+                children: [const HeaderSection(),          Container(height: 1,color: Colors.black54,),
+                  const Expanded(child: DrawerItemSection())],
               ),
             ),
-            FooterSection()
+            const FooterSection()
           ],
         ),
       ),

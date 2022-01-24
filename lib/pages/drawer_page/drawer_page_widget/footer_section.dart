@@ -11,15 +11,15 @@ class FooterSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return     Column(
       children: [
-        Spacer(),
+        const Spacer(),
         Container(color: Colors.grey,height: .2,),
         Container(
           color: Theme.of(context).cardColor,
           width: double.infinity,
-          padding: EdgeInsets.symmetric(vertical: 8),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           child: Column(
             children: [
-              SizedBox(height: 8,),
+              const SizedBox(height: 8,),
               Consumer<ThemeProvider>(
                   builder: (context,data,_) {
                     return ToggleSwitch(
@@ -29,13 +29,13 @@ class FooterSection extends StatelessWidget {
                       inactiveBgColor: Theme.of(context).primaryColor.withOpacity(.1),
 
 
-                      icons: [
+                      icons: const [
                         FontAwesomeIcons.sun,
                         FontAwesomeIcons.moon,
                         FontAwesomeIcons.circle
                       ],
 
-                      labels: ['Light', 'Dark', 'System'],
+                      labels: const ['Light', 'Dark', 'System'],
                       onToggle: (index) {
                         data.setTheme(index: index, context: context);
                         Navigator.of(context).pop();
@@ -43,11 +43,11 @@ class FooterSection extends StatelessWidget {
                     );
                   }
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               Text(
-                "App Version : 1.0.5",
+                "App Version : 1.0.7",
                 style: TextStyle(
                     color: Theme.of(context)
                         .textTheme

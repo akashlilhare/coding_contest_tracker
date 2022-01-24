@@ -5,7 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SavedContestProvider with ChangeNotifier {
-  List<ContestSource> contestProviderList = [];
+  List<ContestSource> savedContestList = [];
+  List<ContestSource> selectedContestList = [];
 
   saveData({required List<ContestSource> list}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -16,13 +17,33 @@ class SavedContestProvider with ChangeNotifier {
   readData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? savedData = prefs.getString('save_contest');
-    print(savedData.toString());
-    if(savedData == null){
-      contestProviderList = allProvider;
-    }else{
+    if (savedData == null) {
+      savedContestList = allContestList;
+    } else {
       final List<ContestSource> savedList = decodeContestData(data: savedData);
-      contestProviderList = savedList;
+      savedContestList = savedList;
     }
+    notifyListeners();
+  }
+
+  getSelectedSites()async {
+    selectedContestList = [];
+   await readData();
+    for (var contest in savedContestList) {
+      if (contest.isSelected) {
+        selectedContestList.add(contest);
+      }
+    }
+    notifyListeners();
+  }
+
+  toggleFilter({required bool value, required ContestSource contest}) {
+    int idx = savedContestList.indexOf(contest);
+    savedContestList[idx] = ContestSource(
+        title: contest.title,
+        imgSrc: contest.imgSrc,
+        isSelected: value,
+        key: contest.key);
     notifyListeners();
   }
 }
@@ -30,7 +51,7 @@ class SavedContestProvider with ChangeNotifier {
 String encodeContestData({required List<ContestSource> srcList}) {
   List<dynamic> jsonList = [];
 
-  srcList.forEach((src) {
+  for (var src in srcList) {
     Map<String, String> jsonMap = {};
     jsonMap = {
       "key": src.key,
@@ -38,9 +59,9 @@ String encodeContestData({required List<ContestSource> srcList}) {
       "is_selected": src.isSelected.toString()
     };
     jsonList.add(jsonMap);
-  });
+  }
   String jsonString = json.encode(jsonList);
-  print(jsonString);
+
   return jsonString;
 }
 
