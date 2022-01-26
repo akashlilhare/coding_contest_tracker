@@ -6,8 +6,9 @@ Tracker for all ongoing and upcoming coding contests hosted on various platforms
 
 ##  Download app
 
-[<img src="https://www.freepnglogos.com/uploads/play-store-logo-png/play-store-logo-nisi-filters-australia-11.png" width="250"/>
-](https://w7.pngwing.com/pngs/961/859/png-transparent-google-play-android-app-store-apple-android-text-rectangle-logo.png)
+
+[<img src="https://www.freepnglogos.com/uploads/play-store-logo-png/play-store-logo-nisi-filters-australia-11.png" width="250"/>](https://w7.pngwing.com/pngs/961/859/png-transparent-google-play-android-app-store-apple-android-text-rectangle-logo.png)
+
 
 ## Description
 
