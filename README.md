@@ -7,8 +7,9 @@ Tracker for all ongoing and upcoming coding contests hosted on various platforms
 ##  Download app
 
 
-[<img src="https://www.freepnglogos.com/uploads/play-store-logo-png/play-store-logo-nisi-filters-australia-11.png" width="250"/>](https://w7.pngwing.com/pngs/961/859/png-transparent-google-play-android-app-store-apple-android-text-rectangle-logo.png)
 
+
+<a href="https://play.google.com/store/apps/details?id=com.akash.coding_contest_tracker&hl=en_US&gl=US" rel="some text">![app download link](https://lh3.googleusercontent.com/cjsqrWQKJQp9RFO7-hJ9AfpKzbUb_Y84vXfjlP0iRHBvladwAfXih984olktDhPnFqyZ0nu9A5jvFwOEQPXzv7hr3ce3QVsLN8kQ2Ao=s0) </a>
 
 ## Description
 
